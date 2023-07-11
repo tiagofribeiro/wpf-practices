@@ -16,32 +16,88 @@ using System.Windows.Shapes;
 namespace Calculator
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Lógica para MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
         private double _lastNumber, _result;
+        private SelectedOperator _operator;
 
         public MainWindow()
         {
             InitializeComponent();
 
+            // Atribuição de evento de click manual.
             clearButton.Click += ClearButton_Click;
             negaButton.Click += NegaButton_Click;
             percentButton.Click += PercentButton_Click;
             equalButton.Click += EqualButton_Click;
         }
 
-        private void EqualButton_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Método - Handler para o teclado numérico da calculadora
+        /// </summary>
+        /// <param name="sender">Tecla</param>
+        /// <param name="e">Argumentos</param>
+        private void NumberHandler(object sender, RoutedEventArgs e)
         {
+            int selectedNumber = int.Parse((sender as Button).Content.ToString());
 
+            if (resultLabel.Content.ToString() == "0")
+                resultLabel.Content = $"{selectedNumber}";
+            else
+                resultLabel.Content = $"{resultLabel.Content}{selectedNumber}";
         }
 
+        /// <summary>
+        /// Método - Handler para as operações básicas (adição, subtração, multiplicação e divisão)
+        /// </summary>
+        /// <param name="sender">Tecla</param>
+        /// <param name="e">Argumentos</param>
         private void OperationHandler(object sender, RoutedEventArgs e)
         {
+            if (double.TryParse(resultLabel.Content.ToString(), out _lastNumber))
+                resultLabel.Content = "0";
 
+            if (sender == plusButton)
+                _operator = SelectedOperator.Addiction;
+            if (sender == minusButton)
+                _operator = SelectedOperator.Subtraction;
+            if (sender == divButton)
+                _operator = SelectedOperator.Divison;
+            if (sender == multButton)
+                _operator = SelectedOperator.Multiplication;
         }
 
+        /// <summary>
+        /// Função - Evento de click para o botão de igual (resultado)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EqualButton_Click(object sender, RoutedEventArgs e)
+        {
+            double newNumber;
+            if (double.TryParse(resultLabel.Content.ToString(), out newNumber))
+            {
+                switch (_operator)
+                {
+                    case SelectedOperator.Addiction:
+                        break;
+                    case SelectedOperator.Subtraction:
+                        break;
+                    case SelectedOperator.Divison:
+                        break;
+                    case SelectedOperator.Multiplication:
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Função - Evento de click para o botão de %
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PercentButton_Click(object sender, RoutedEventArgs e)
         {
             if (double.TryParse(resultLabel.Content.ToString(), out _lastNumber))
@@ -51,6 +107,11 @@ namespace Calculator
             }
         }
 
+        /// <summary>
+        /// Função - Evento de click para o botão de negativo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NegaButton_Click(object sender, RoutedEventArgs e)
         {
             if (double.TryParse(resultLabel.Content.ToString(), out _lastNumber))
@@ -60,40 +121,25 @@ namespace Calculator
             }
         }
 
+        /// <summary>
+        /// Função - Evento de click para o botão de limpar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             resultLabel.Content = "0";
         }
+    }
 
-        private void NumberHandler(object sender, RoutedEventArgs e)
-        {
-            int selectedNumber = 0;
-
-            if (sender == zeroButton)
-                selectedNumber = 0;
-            if (sender == oneButton)
-                selectedNumber = 1;
-            if (sender == twoButton)
-                selectedNumber = 2;
-            if (sender == threeButton)
-                selectedNumber = 3;
-            if (sender == fourButton)
-                selectedNumber = 4;
-            if (sender == fiveButton)
-                selectedNumber = 5;
-            if (sender == sixButton)
-                selectedNumber = 6;
-            if (sender == sevenButton)
-                selectedNumber = 7;
-            if (sender == eightButton)
-                selectedNumber = 8;
-            if (sender == nineButton)
-                selectedNumber = 9;
-
-            if (resultLabel.Content.ToString() == "0")
-                resultLabel.Content = $"{selectedNumber}";
-            else 
-                resultLabel.Content = $"{resultLabel.Content}{selectedNumber}";
-        }
+    /// <summary>
+    /// Enumerador para as operações possíveis
+    /// </summary>
+    public enum SelectedOperator
+    {
+        Addiction,
+        Subtraction,
+        Multiplication,
+        Divison
     }
 }
