@@ -38,100 +38,113 @@
             x:Name="clearButton"
             Grid.Row="1" 
             Content="AC" 
-            Margin="4"/>
+            Margin="4" />
         <Button 
             x:Name="negaButton"
             Grid.Row="1" 
             Grid.Column="1"
-            Content="+/1" 
-            Margin="4"/>
+            Content="+/-" 
+            Margin="4" />
         <Button 
             x:Name="percentButton"
             Grid.Row="1" 
             Grid.Column="2"
             Content="%" 
-            Margin="4"/>
+            Margin="4" />
         <Button 
             x:Name="divButton"
             Grid.Row="1" 
             Grid.Column="3"
             Content="/" 
-            Margin="4"/>
+            Margin="4" 
+            Click="OperationHandler" />
 
         <!--Segunda linha-->
         <Button 
             x:Name="sevenButton"
             Grid.Row="2" 
             Content="7" 
-            Margin="4"/>
+            Margin="4" 
+            Click="NumberHandler" />
         <Button 
             x:Name="eightButton"
             Grid.Row="2" 
             Grid.Column="1"
             Content="8" 
-            Margin="4"/>
+            Margin="4"
+            Click="NumberHandler" />
         <Button 
             x:Name="nineButton"
             Grid.Row="2" 
             Grid.Column="2"
             Content="9" 
-            Margin="4"/>
+            Margin="4"
+            Click="NumberHandler" />
         <Button 
             x:Name="multButton"
             Grid.Row="2" 
             Grid.Column="3"
             Content="*" 
-            Margin="4"/>
+            Margin="4" 
+            Click="OperationHandler" />
 
         <!--Terceira linha-->
         <Button 
             x:Name="fourButton"
             Grid.Row="3" 
             Content="4" 
-            Margin="4"/>
+            Margin="4"
+            Click="NumberHandler" />
         <Button 
             x:Name="fiveButton"
             Grid.Row="3" 
             Grid.Column="1"
             Content="5" 
-            Margin="4"/>
+            Margin="4"
+            Click="NumberHandler" />
         <Button 
             x:Name="sixButton"
             Grid.Row="3" 
             Grid.Column="2"
             Content="6" 
-            Margin="4"/>
+            Margin="4"
+            Click="NumberHandler" />
         <Button 
             x:Name="minusButton"
             Grid.Row="3" 
             Grid.Column="3"
             Content="-" 
-            Margin="4"/>
+            Margin="4" 
+            Click="OperationHandler" />
 
         <!--Quarta linha-->
         <Button 
             x:Name="oneButton"
             Grid.Row="4" 
             Content="1" 
-            Margin="4"/>
+            Margin="4"
+            Click="NumberHandler" />
         <Button 
             x:Name="twoButton"
             Grid.Row="4" 
             Grid.Column="1"
             Content="2" 
-            Margin="4"/>
+            Margin="4"
+            Click="NumberHandler" />
         <Button 
             x:Name="threeButton"
             Grid.Row="4" 
             Grid.Column="2"
             Content="3" 
-            Margin="4"/>
+            Margin="4"
+            Click="NumberHandler" />
         <Button 
             x:Name="plusButton"
             Grid.Row="4" 
             Grid.Column="3"
             Content="+" 
-            Margin="4"/>
+            Margin="4" 
+            Click="OperationHandler" />
 
         <!--Última linha-->
         <Button 
@@ -139,7 +152,8 @@
             Grid.Row="5" 
             Grid.ColumnSpan="2"
             Content="0" 
-            Margin="4"/>
+            Margin="4"
+            Click="NumberHandler" />
         <Button 
             x:Name="dotButton"
             Grid.Row="5" 
@@ -151,6 +165,7 @@
             Grid.Row="5" 
             Grid.Column="3"
             Content="=" 
-            Margin="4"/>
+            Margin="4" 
+            Click="OperationHandler" />
     </Grid>
 </Window>
