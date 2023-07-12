@@ -77,33 +77,48 @@ namespace Calculator
         private void EqualButton_Click(object sender, RoutedEventArgs e)
         {
             double newNumber;
+
             if (double.TryParse(resultLabel.Content.ToString(), out newNumber))
             {
                 switch (_operator)
                 {
                     case SelectedOperator.Addiction:
+                        _result = Operations.Add(_lastNumber, newNumber);
                         break;
                     case SelectedOperator.Subtraction:
-                        break;
-                    case SelectedOperator.Divison:
+                        _result = Operations.Subtract(_lastNumber, newNumber);
                         break;
                     case SelectedOperator.Multiplication:
+                        _result = Operations.Multiply(_lastNumber, newNumber);
+                        break;
+                    case SelectedOperator.Divison:
+                        _result = Operations.Divide(_lastNumber, newNumber);
                         break;
                 }
+
+                resultLabel.Content = _result;
             }
         }
 
         /// <summary>
         /// Função - Evento de click para o botão de %
+        /// <list type="bullet">
+        /// <item>Em uma operação, calcula a % do primeiro valor.</item>
+        /// </list>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void PercentButton_Click(object sender, RoutedEventArgs e)
         {
-            if (double.TryParse(resultLabel.Content.ToString(), out _lastNumber))
+            double newNumber;
+
+            if (double.TryParse(resultLabel.Content.ToString(), out newNumber))
             {
-                _lastNumber /= 100;
-                resultLabel.Content = _lastNumber.ToString();
+                newNumber /= 100;
+                if(_lastNumber != 0)
+                    newNumber *= _lastNumber;
+
+                resultLabel.Content = newNumber.ToString();
             }
         }
 
@@ -121,6 +136,12 @@ namespace Calculator
             }
         }
 
+        private void DotButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!resultLabel.Content.ToString().Contains('.'))
+                resultLabel.Content = $"{resultLabel.Content}.";
+        }
+
         /// <summary>
         /// Função - Evento de click para o botão de limpar
         /// </summary>
@@ -129,6 +150,8 @@ namespace Calculator
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             resultLabel.Content = "0";
+            _result = 0;
+            _lastNumber = 0;
         }
     }
 
@@ -141,5 +164,27 @@ namespace Calculator
         Subtraction,
         Multiplication,
         Divison
+    }
+
+    /// <summary>
+    /// Classe de funções para operações matemáticas
+    /// </summary>
+    public class Operations
+    {
+        public static double Add(double n1, double n2) { return n1 + n2; }
+
+        public static double Subtract(double n1, double n2) { return n1 - n2; }
+
+        public static double Multiply(double n1, double n2) { return n1 * n2; }
+
+        public static double Divide(double n1, double n2)
+        {
+            if(n2 == 0)
+            {
+                MessageBox.Show("Divisão por 0 é muito difícil!", "Tenta outro número", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return 0;
+            }
+            return (n1 / n2);
+        }
     }
 }
