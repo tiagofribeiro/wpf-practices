@@ -23,12 +23,19 @@ namespace DesktopContactsApp
         public MainWindow()
         {
             InitializeComponent();
+
+            ReadDatabase();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             NewContactWindow newContactWindow = new NewContactWindow();
             newContactWindow.ShowDialog();
+        }
+
+        private void ReadDatabase()
+        {
+
         }
     }
 }
