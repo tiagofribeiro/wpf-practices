@@ -6,4 +6,8 @@ Console.WriteLine("Início!");
 
 BankAccount bankAccount = new BankAccount();
 
-Console.WriteLine(bankAccount.AddToBalance(20000));
+Console.WriteLine("Valor total: " + bankAccount.AddToBalance(20000));
+
+ChildBankAccount childBankAccount = new ChildBankAccount();
+
+Console.WriteLine("Valor conta infantil: " + childBankAccount.AddToBalance(20000));
