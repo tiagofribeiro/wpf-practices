@@ -37,7 +37,7 @@ namespace DesktopContactsApp
             };
 
             // A palavra chave using utiliza a interface disposable para simplificar a 'eliminação' do obj
-            using (SQLiteConnection _conn = new SQLiteConnection(App.DatabasePath))
+            using (SQLiteConnection _conn = new(App.DatabasePath))
             {
                 _conn.CreateTable<Contact>();
                 _conn.Insert(contact);

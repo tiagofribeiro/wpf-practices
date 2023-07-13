@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using DesktopContactsApp.Classes;
+
 namespace DesktopContactsApp
 {
     /// <summary>
@@ -31,11 +33,21 @@ namespace DesktopContactsApp
         {
             NewContactWindow newContactWindow = new NewContactWindow();
             newContactWindow.ShowDialog();
+
+            ReadDatabase();
         }
 
         private void ReadDatabase()
         {
+            List<Contact> contacts;
+            using (SQLite.SQLiteConnection conn = new(App.DatabasePath))
+            {
+                conn.CreateTable<Contact>();
+                contacts = conn.Table<Contact>().ToList();
+            }
 
+            if (contacts != null)
+                contactsListView.ItemsSource = contacts;
         }
     }
 }

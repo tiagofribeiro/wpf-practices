@@ -19,5 +19,14 @@ namespace DesktopContactsApp.Classes
 
         [MaxLength(15)]
         public string Phone { get; set; }
+
+        /// <summary>
+        /// Sobrescrita do método ToString para realizar formatação prévia
+        /// </summary>
+        /// <returns>Todos os dados de forma legível</returns>
+        public override string ToString()
+        {
+            return $"{Name} - {Email} - {Phone}";
+        }
     }
 }
