@@ -57,8 +57,22 @@ namespace DesktopContactsApp
         /// <param name="e"></param>
         private void NewContact_Click(object sender, RoutedEventArgs e)
         {
-            NewContactWindow newContactWindow = new NewContactWindow();
+            NewContactWindow newContactWindow = new();
             newContactWindow.ShowDialog();
+
+            ReadDatabase();
+        }
+
+        private void ContactsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Correspondência Padrão - ao invés de transformar o objeto do argumento "e" em "Contact" utilizando "as",
+            // já realiza a verificação de nulo e atribui a variável
+
+            if (contactsListView.SelectedItem is Contact selectedContact)
+            {
+                DetailedContactWindow detailedContactWindow = new(selectedContact);
+                detailedContactWindow.ShowDialog();
+            }
 
             ReadDatabase();
         }
