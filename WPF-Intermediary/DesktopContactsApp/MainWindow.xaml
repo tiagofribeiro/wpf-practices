@@ -8,12 +8,13 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid Margin="10">
         <StackPanel>
-            <Button 
-                Content="Novo contato" 
-                Click="Button_Click"/>
-            <ListView 
-                x:Name="contactsListView" 
-                Margin="0,5,0,0">
+            <Button x:Name="newContact" 
+                    Content="Novo contato" 
+                    Click="NewContact_Click"/>
+            <TextBox x:Name="searchBar" 
+                     Margin="0,5" 
+                     TextChanged="SearchBar_TextChanged" />
+            <ListView x:Name="contactsListView">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>

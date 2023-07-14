@@ -27,7 +27,12 @@ namespace DesktopContactsApp
             InitializeComponent();
         }
 
-        private void saveButton_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Evento de botão para salvar o contato
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             Contact contact = new Contact()
             {
