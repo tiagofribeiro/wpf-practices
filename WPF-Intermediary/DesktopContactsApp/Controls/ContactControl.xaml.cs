@@ -21,8 +21,6 @@ namespace DesktopContactsApp.Controls
     /// </summary>
     public partial class ContactControl : UserControl
     {
-
-
         public Contact Contact
         {
             get { return (Contact)GetValue(ContactProperty); }

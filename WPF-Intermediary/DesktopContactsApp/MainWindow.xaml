@@ -15,9 +15,14 @@
             <TextBox x:Name="searchBar" 
                      Margin="0,5" 
                      TextChanged="SearchBar_TextChanged" />
-            <ListView 
-                x:Name="contactsListView"
-                SelectionChanged="ContactsListView_SelectionChanged">
+            <ListView x:Name="contactsListView"
+                      SelectionChanged="ContactsListView_SelectionChanged">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" 
+                                Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <controls:ContactControl Contact="{Binding}" />
