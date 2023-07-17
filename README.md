@@ -12,6 +12,7 @@ Conteúdo de prática utilizando WPF.
  - C#
  - SQLite
  - REST
+   - CustomVision AI
  - MVVM
  - Azure
 
