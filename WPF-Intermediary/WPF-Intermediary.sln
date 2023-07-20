@@ -5,7 +5,9 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesktopContactsApp", "DesktopContactsApp\DesktopContactsApp.csproj", "{FBA4C923-39F7-4773-9297-BF3C9B735D3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LandmarkAPI", "LandmarkAPI\LandmarkAPI.csproj", "{F255C9B4-4E2C-4EC2-877B-48B193F31199}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LandmarkAPI", "LandmarkAPI\LandmarkAPI.csproj", "{F255C9B4-4E2C-4EC2-877B-48B193F31199}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherApp", "WeatherApp\WeatherApp.csproj", "{A2EFE348-4350-4D53-9E1A-76F34799F245}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{F255C9B4-4E2C-4EC2-877B-48B193F31199}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F255C9B4-4E2C-4EC2-877B-48B193F31199}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F255C9B4-4E2C-4EC2-877B-48B193F31199}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2EFE348-4350-4D53-9E1A-76F34799F245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2EFE348-4350-4D53-9E1A-76F34799F245}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2EFE348-4350-4D53-9E1A-76F34799F245}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2EFE348-4350-4D53-9E1A-76F34799F245}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
