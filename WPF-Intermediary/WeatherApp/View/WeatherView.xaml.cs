@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WeatherApp
+namespace WeatherApp.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Lógica interna para WeatherView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class WeatherView : Window
     {
-        public MainWindow()
+        public WeatherView()
         {
             InitializeComponent();
         }
