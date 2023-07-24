@@ -18,7 +18,7 @@ namespace WeatherApp.ViewModel
 
         public static async Task<List<City>> GetCitiesAsync(string query)
         {
-            List<City> cityList = new();
+            List<City>? cityList = new();
 
             string url = BASE_URL + string.Format(AUTOCOMPLETE_ENDPOINT, API_KEY, query);
 
@@ -36,7 +36,7 @@ namespace WeatherApp.ViewModel
 
         public static async Task<CurrentConditions> GetCurrentConditionsAsync(string cityKey)
         {
-            CurrentConditions currentConditions = new();
+            CurrentConditions? currentConditions = new();
 
             string url = BASE_URL + string.Format(CURRENTCONDITION_ENDPOINT, cityKey, API_KEY);
 
