@@ -6,27 +6,37 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using WeatherApp.Model;
+using WeatherApp.ViewModel.Commands;
 
 namespace WeatherApp.ViewModel
 {
     class WeatherViewModel : INotifyPropertyChanged
     {
-        // Implementação de interfaces
+        // Implementação de interface
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        // Propriedades privadas
-        private int query;
-        private CurrentConditions currentConditions;
+        // Props
+        private string query;
         private City selectedcity;
+        private CurrentConditions currentConditions;
 
-        // Propriedades públicas
-        public int Query
+        public string Query
         {
             get { return query; }
             set
             {
                 query = value;
                 OnPropertyChanged(nameof(Query));
+            }
+        } 
+
+        public City SelectedCity
+        {
+            get { return selectedcity; }
+            set
+            {
+                selectedcity = value;
+                OnPropertyChanged(nameof(SelectedCity));
             }
         }
 
@@ -40,19 +50,13 @@ namespace WeatherApp.ViewModel
             }
         }
 
-        public City SelectedCity
-        {
-            get { return selectedcity; }
-            set
-            {
-                selectedcity = value;
-                OnPropertyChanged(nameof(SelectedCity));
-            }
-        }
+        // Commands
+        public SearchCommand SearchCommand { get; set; }
 
+        // Construtor
         public WeatherViewModel()
         {
-            // Cria dados "mockados" apenas no designer
+            // Dados mocados visíveis apenas no designer
             if (DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
             {
                 SelectedCity = new City
@@ -71,11 +75,19 @@ namespace WeatherApp.ViewModel
                     }
                 };
             }
+
+            SearchCommand = new SearchCommand(this);
         }
 
+        // Métodos
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void CreateQuery()
+        {
+            var cities = AccuWeatherHelper.GetCitiesAsync(Query);
         }
     }
 }
