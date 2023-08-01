@@ -17,8 +17,21 @@ Aplicativo de contatos (WPF).
 ### LandmarkAPI
 
 Aplicativo que utiliza a IA *CustomVision* para realizar associação de imagens.
+> CustomVisionAPI
 - Requisições HTTP
 - Consumo de API
 - Seleção de arquivos
 - Deserialização de JSON
+
+<br>
+
+### WeatherApp
+
+Aplicativo que realiza buscas e exibe os dados de clima de uma localidade.
+> AccuWeatherAPI
+- Padrão MVVM
+- Interface ICommand e IValueConverter
+- Observable Collection
+- JSON Utils
+
 

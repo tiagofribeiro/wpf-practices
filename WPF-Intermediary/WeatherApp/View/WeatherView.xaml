@@ -1,16 +1,15 @@
 ﻿<Window x:Class="WeatherApp.View.WeatherView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WeatherApp.View"
         xmlns:viewModel="clr-namespace:WeatherApp.ViewModel"
         mc:Ignorable="d"
-        Title="Clima" Height="500" Width="400" ResizeMode="NoResize">
+        Title="Clima" Height="540" Width="400" ResizeMode="NoResize">
     <Window.Resources>
         <viewModel:WeatherViewModel x:Key="vm"/>
     </Window.Resources>
-    
+
     <!--Associação de ViewModel ao DataContext-->
     <Grid DataContext="{StaticResource vm}">
         <Grid.RowDefinitions>
@@ -30,17 +29,18 @@
                         Command="{Binding SearchCommand}"
                         CommandParameter="{Binding Query}"/>
             </DockPanel>
-            <ListView>
+            <ListView ItemsSource="{Binding Cities}" SelectedValue="{Binding SelectedCity}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <TextBlock />
-                        </Grid>
+                        <StackPanel>
+                            <TextBlock Text="{Binding LocalizedName}" FontSize="16"/>
+                            <TextBlock Text="{Binding AdministrativeArea.LocalizedName}" Foreground="DarkGray"/>
+                        </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
-        
+
         <!--Associação de propriedade ao DataContext "filho"-->
         <Grid Grid.Row="1" 
               Background="DodgerBlue"

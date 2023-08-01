@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using WeatherApp.Model;
 using WeatherApp.ViewModel.Commands;
+using WeatherApp.ViewModel.Helpers;
 
 namespace WeatherApp.ViewModel
 {
@@ -20,6 +18,8 @@ namespace WeatherApp.ViewModel
         private City selectedcity;
         private CurrentConditions currentConditions;
 
+        public ObservableCollection<City> Cities { get; set; }
+
         public string Query
         {
             get { return query; }
@@ -28,7 +28,7 @@ namespace WeatherApp.ViewModel
                 query = value;
                 OnPropertyChanged(nameof(Query));
             }
-        } 
+        }
 
         public City SelectedCity
         {
@@ -77,17 +77,38 @@ namespace WeatherApp.ViewModel
             }
 
             SearchCommand = new SearchCommand(this);
+            Cities = new ObservableCollection<City>();
         }
 
         // Métodos
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+            Console.WriteLine(propertyName);
         }
 
-        public void CreateQuery()
+        public async void SearchCity()
         {
-            var cities = AccuWeatherHelper.GetCitiesAsync(Query);
+            Cities.Clear();
+
+            List<City> response = await AccuWeatherHelper.GetCitiesAsync(Query);
+
+            foreach (City city in response)
+            {
+                Cities.Add(city);
+            }
+        }
+
+        private async void GetCurrentConditions()
+        {
+            Cities.Clear();
+            CurrentConditions = new();
+            Query = string.Empty;
+
+
+            CurrentConditions = await AccuWeatherHelper.GetCurrentConditionsAsync(SelectedCity.Key);
+
         }
     }
 }

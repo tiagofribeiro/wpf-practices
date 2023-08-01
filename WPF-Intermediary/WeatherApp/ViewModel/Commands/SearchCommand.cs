@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace WeatherApp.ViewModel.Commands
@@ -15,7 +11,7 @@ namespace WeatherApp.ViewModel.Commands
         // Implementação de interface
         public event EventHandler? CanExecuteChanged
         {
-            // Atualizar os comandos, no caso de comandos customizados
+            // Atualizar os comandos manualmente, no caso de comandos customizados
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
         }
@@ -26,7 +22,7 @@ namespace WeatherApp.ViewModel.Commands
         // Métodos
         public bool CanExecute(object? parameter)
         {
-            string query = parameter as string;
+            string? query = parameter as string;
 
             if (string.IsNullOrEmpty(query))
                 return false;
@@ -35,7 +31,7 @@ namespace WeatherApp.ViewModel.Commands
 
         public void Execute(object? parameter)
         {
-            WeatherVM.CreateQuery();
+            WeatherVM.SearchCity();
         }
     }
 }

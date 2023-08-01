@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using WeatherApp.Model;
 
-namespace WeatherApp.ViewModel
+namespace WeatherApp.ViewModel.Helpers
 {
     internal class AccuWeatherHelper
     {
@@ -27,7 +25,7 @@ namespace WeatherApp.ViewModel
 
             string url = BASE_URL + string.Format(AUTOCOMPLETE_ENDPOINT, API_KEY, query);
 
-            using (HttpClient client = new()) 
+            using (HttpClient client = new())
             {
                 var response = await client.GetAsync(url);
                 string json = await response.Content.ReadAsStringAsync();
@@ -54,8 +52,9 @@ namespace WeatherApp.ViewModel
                 var response = await client.GetAsync(url);
                 string json = await response.Content.ReadAsStringAsync();
 
-                currentConditions = JsonConvert.DeserializeObject<CurrentConditions>(json);
+                currentConditions = JsonConvert.DeserializeObject<List<CurrentConditions>>(json)?.FirstOrDefault();
             }
+
 
             return currentConditions;
         }
