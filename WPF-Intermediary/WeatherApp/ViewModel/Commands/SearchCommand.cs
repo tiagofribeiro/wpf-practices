@@ -5,9 +5,6 @@ namespace WeatherApp.ViewModel.Commands
 {
     class SearchCommand : ICommand
     {
-        // Props
-        public WeatherViewModel WeatherVM { get; set; }
-
         // Implementação de interface
         public event EventHandler? CanExecuteChanged
         {
@@ -15,6 +12,9 @@ namespace WeatherApp.ViewModel.Commands
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
         }
+
+        // Props
+        public WeatherViewModel WeatherVM { get; set; }
 
         // Construtor
         public SearchCommand(WeatherViewModel weatherVM) => WeatherVM = weatherVM;

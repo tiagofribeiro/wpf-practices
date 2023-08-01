@@ -29,7 +29,8 @@
                         Command="{Binding SearchCommand}"
                         CommandParameter="{Binding Query}"/>
             </DockPanel>
-            <ListView ItemsSource="{Binding Cities}" SelectedValue="{Binding SelectedCity}">
+            <ListView ItemsSource="{Binding Cities}" 
+                      SelectedValue="{Binding SelectedCity}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
