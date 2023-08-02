@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows;
 using WeatherApp.Model;
 using WeatherApp.ViewModel.Commands;
 using WeatherApp.ViewModel.Helpers;
@@ -60,25 +61,31 @@ namespace WeatherApp.ViewModel
         // Construtor
         public WeatherViewModel()
         {
-            // Dados mocados visíveis apenas no designer
-            if (DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
-            {
-                SelectedCity = new City
-                {
-                    LocalizedName = "Belo Horizonte"
-                };
-                CurrentConditions = new CurrentConditions
-                {
-                    WeatherText = "Nublado",
-                    Temperature = new Temperature
-                    {
-                        Metric = new Units
-                        {
-                            Value = 30,
-                        }
-                    }
-                };
-            }
+            #region Dados mocados visíveis apenas no designer
+            //if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
+            //{
+            //    Query = string.Empty;
+
+            //    SelectedCity = new City
+            //    {
+            //        LocalizedName = "Belo Horizonte",
+            //    };
+
+            //    CurrentConditions = new CurrentConditions
+            //    {
+            //        WeatherText = "Nublado",
+            //        HasPrecipitation = false,
+            //        IsDayTime = false,
+            //        Temperature = new Temperature
+            //        {
+            //            Metric = new Units
+            //            {
+            //                Value = 30,
+            //            }
+            //        }
+            //    };
+            //}
+            #endregion
 
             SearchCommand = new SearchCommand(this);
             Cities = new ObservableCollection<City>();

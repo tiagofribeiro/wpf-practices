@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -52,9 +53,8 @@ namespace WeatherApp.ViewModel.Helpers
                 var response = await client.GetAsync(url);
                 string json = await response.Content.ReadAsStringAsync();
 
-                currentConditions = JsonConvert.DeserializeObject<List<CurrentConditions>>(json)?.FirstOrDefault();
+                currentConditions = (JsonConvert.DeserializeObject<List<CurrentConditions>>(json))?.FirstOrDefault();
             }
-
 
             return currentConditions;
         }

@@ -4,10 +4,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModel="clr-namespace:WeatherApp.ViewModel"
+        xmlns:converters="clr-namespace:WeatherApp.ViewModel.Converters"
         mc:Ignorable="d"
         Title="Clima" Height="540" Width="400" ResizeMode="NoResize">
     <Window.Resources>
         <viewModel:WeatherViewModel x:Key="vm"/>
+        <converters:BoolToRainConverter x:Key="rain"/>
     </Window.Resources>
 
     <!--Associação de ViewModel ao DataContext-->
@@ -58,6 +60,7 @@
                            Foreground="White"
                            FontSize="20"/>
                 <TextBlock Text="{Binding WeatherText}" Foreground="White"/>
+                <TextBlock Text="{Binding HasPrecipitation, Converter={StaticResource rain}}" Foreground="White"/>
             </StackPanel>
             <TextBlock Grid.Column="1" 
                        Text="{Binding Temperature.Metric.Value, StringFormat={}{0}ºC}" 
